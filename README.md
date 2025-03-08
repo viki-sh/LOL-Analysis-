@@ -89,12 +89,6 @@ For our univariate analysis, lets look at the distribution of PGA across all gam
   frameborder="0"
 ></iframe>
 
-<iframe
-  src="C:\LOL-Analysis-\assets\uni.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
 
 There are no values of PGA over 8, because there is randomness to when picking and banning. The process usually goes as follows :  
 
