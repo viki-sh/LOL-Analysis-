@@ -20,53 +20,62 @@ In addition to selecting a role and a repective champion, each player can also b
 The 'Rift', aka the map a match is played on, is parallel, with three lanes and a mass jungle. The red team plays from the top, and aims to destroy the enemys nexus on the bottom, and vise versa. Typically in the league community, most players prefer to be on the blue side, as playing upwards is easier than playing downward. However, these sides are assignmed at random and there is no in game advantage for either.
 
 ## Introduction of dataset 
-Our dataset comes from Oracle’s Elixir, encompassing approximately thousands of professional-level esports matches from top-tier leagues such as the LCS, LEC, LCK, and LPL. For our analysis, we chose to only use 2017, 2019, 2020, 2021, 2022, 2024, and 2025, as the data from other years only had 3 bans, and we would like to analyze across all 5.
 - **Number of Rows:** 86899
 - **Key Columns:**
-- 'year'
-- gameid
-- league
-- teamname
-- side
-- ban1 
-- ban2
-- ban3
-- ban4
-- ban5 
-- pick1
-- pick2
-- pick3
-- pick4
-- pick5
-- result
-- num_counters_picked
-- num_counters_banned 
-- PGA 
-- higher_PGA
-- mean_champ_wr
-- mean_team_wr
+- `year`: Records the year a game was played  
+- `gameid`: A unique identifier for each game. Shared by two teams
+- `league` : Specifies the league tournament in which the match took place. There are 110 unique leagues in our dataset. 
+- `teamname` : The name of the team competing. There are 1479 unique teams in our dataset
+- `side` : The side distinguishes the 'red' and 'blue' teams 
+- `ban1` : The first ban of the respective team, in the form of a champion's name
+- `ban2`: The second ban of the respective team, in the form of a champion's name
+- `ban3`: The third ban of the respective team, in the form of a champion's name
+- `ban4`: The fourth ban of the respective team, in the form of a champion's name
+- `ban5` : The fifth ban of the respective team, in the form of a champion's name
+- `pick1`: The first pick of the respective team, in the form of a champion's name
+- `pick2`: The first pick of the respective team, in the form of a champion's name
+- `pick3`: The first pick of the respective team, in the form of a champion's name
+- `pick4`: The first pick of the respective team, in the form of a champion's name
+- `pick5`: The first pick of the respective team, in the form of a champion's name
+- `result`: The outcome of a match. 1 indicates the team won, 0 indicates the team lost.
+- `num_counters_picked` : The number champion picks that counter any of the opposing team picks, between 1-5. (Equivelent to choosing your opponent's weakness)
+- `num_counters_banned` : The number champion bans that counter any of the respective team picks, between 1-5. (Equivelent to removing your own weakness)
+- `PGA` : "Pre-game Advantage", The sum of `num_counters_picked` and `num_counters_banned`, between 1-10. 
+- `higher_PGA` : Indication of which team has a higher `PGA`. 1 if yes, 0 if no. There are no ties, as those rows have been dropped from the dataset
+- `mean_champ_wr`: The mean win rate of all picks in a team
+- `mean_team_wr`: The mean win rate of the team playing 
 
 Additionally, we scraped the following website https://www.counterstats.net/ to create our own dataframe consisting of: 
 
-- Champion
-- counters champ
-- champ counters
+- `Champion` : Name of champion
+- `counters champ` : The top 5 champions that counter `Champion`
 
 # Data Cleaning and Exploratory Data Analysis
 
-## Column Creation
-We added five columns to our cleaned dataframe from OracleElixer
+## Data Cleaning 
+Our dataset comes from Oracle’s Elixir, encompassing thousands of professional-level esports matches from top-tier leagues such as the LCS, LEC, LCK, and LPL. For our analysis, we chose to only use 2017, 2019, 2020, 2021, 2022, 2024, and 2025, as the data from other years only had 3 bans, and we would like to analyze across all 5.
 
-- num_counters_picked
-- num_counters_banned 
-- PGA 
-- higher_PGA
-- mean_champ_wr
-- mean_team_wr
+We dropped columns that referenced the in-process game statistics, such as kills, gold, and game objectives, since we are interested in the pre-game. 
 
-Note that we dropped games where PGA was equivelent, because for the sake of our question of higher pga = higher likelihood of win, we wanted to compare pga between teams. We are left with xxx rows afterwards. 
+Additionally, we dropped all rows that had the same PGA for both teams. This way, we could accurately gauge if having a **higher** PGA increased a teams ability to win their match. 
+
+We added five columns to this dataset : 
+
+- `num_counters_picked` : Referencing our webscraped data containing champions and their top five counters, we observed each opponents picks, and incremented by 1 if any of the teams picks were in the opponents counters. 
+- `num_counters_banned` : Referencing our webscraped data containing champions and their top five counters, we observed each teams picks, and incremented by 1 if any of the teams bans were a counter to a pick. 
+- `PGA` : This amount was obtained by adding `num_counters_picked` and `num_counters_banned`, and is an indicator of how strong the overall pre-game choices are for a team
+- `higher_PGA` : This value was obtained to be able to indicate which team had a stronger pre-game advantage, and was used to see the relationship between winning and having a higher pga than your opponent. 
+- `mean_champ_wr` : Using our cleaned dataframe, we obtained a wr for each champ by calculating the number of winning games a champion was played in, divided by the total number of games the champion was played. Then, each pick's respective win rate was added and divided by 5 to obtain the mean. 
+- `mean_team_wr` : Using our cleaned dataframe, we obtained a wr for each team by calculating the number of winning games a team has, divided by the total number of games the team played. 
 
 Our final dataframe head is as follows: 
+|   Unnamed: 0 |   year | gameid    | league   | teamname            | side   | ban1    | ban2     | ban3     | ban4       | ban5    | pick1   | pick2   | pick3      | pick4   | pick5      |   num_counters_picked |   num_counters_banned |   PGA |   higher_PGA |   mean_champ_wr |   mean_team_wr |   result |
+|-------------:|-------:|:----------|:---------|:--------------------|:-------|:--------|:---------|:---------|:-----------|:--------|:--------|:--------|:-----------|:--------|:-----------|----------------------:|----------------------:|------:|-------------:|----------------:|---------------:|---------:|
+|            0 |   2017 | 1506-1540 | LPL      | I May               | Blue   | Syndra  | Malzahar | Ashe     | Karma      | Poppy   | Maokai  | Kha'Zix | Cassiopeia | Varus   | Tahm Kench |                     0 |                     2 |     2 |            1 |        0.508666 |       0.438776 |        1 |
+|            1 |   2017 | 1506-1540 | LPL      | Royal Never Give Up | Red    | Camille | Rengar   | Zyra     | Elise      | Rek'Sai | Kled    | Lee Sin | Ryze       | Caitlyn | Nautilus   |                     0 |                     0 |     0 |            0 |        0.493086 |       0.598582 |        0 |
+|            2 |   2017 | 1506-1541 | LPL      | I May               | Blue   | Syndra  | Malzahar | Ashe     | Rek'Sai    | Kha'Zix | Maokai  | Lee Sin | Corki      | Caitlyn | Thresh     |                     0 |                     0 |     0 |            0 |        0.510833 |       0.438776 |        1 |
+|            3 |   2017 | 1506-1541 | LPL      | Royal Never Give Up | Red    | Rengar  | Camille  | Varus    | Cassiopeia | Orianna | Trundle | Rumble  | Ryze       | Jhin    | Zyra       |                     1 |                     0 |     1 |            1 |        0.492558 |       0.598582 |        0 |
+|            4 |   2017 | 1507-1544 | LPL      | Invictus Gaming     | Blue   | Jayce   | Elise    | Malzahar | Kha'Zix    | Lee Sin | Singed  | Rengar  | LeBlanc    | Varus   | Tahm Kench |                     0 |                     1 |     1 |            0 |        0.49238  |       0.523126 |        1 |
 
 ## Univariate Analysis 
 For our univariate analysis, lets look at the distribution of PGA across all games. Note that 0 means a team did not counter ban nor counter pick, whereas 10 meant they counter picked every single champ. There are no values of PGA over 8, because there is randomness to when picking and banning. The process usually goes as follows :  
