@@ -102,7 +102,13 @@ There are no values of PGA over 8, because there is randomness to when picking a
 
 This process ensures each team has equal likelihood of picking a counter; there isnt a "blue team picks all" and then the red team can counter every champion.  As a result, it is very unlikely to have a PGA of 10, as it would insinuate a team choosing to play against their counter, which is not strategic. 
 
-- insert second univariate 
+<iframe
+  src="C:\LOL-Analysis-\uni2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
 
 It seems that that there are more teams with PGA of at least 1, than none at all. Meaning, most teams either counter picked the enemy or banned one of their counters. This leads us to believe that players are considering the affect of counter matchups
 
