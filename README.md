@@ -68,7 +68,7 @@ We added five columns to this dataset :
 - `mean_champ_wr` : Using our cleaned dataframe, we obtained a wr for each champ by calculating the number of winning games a champion was played in, divided by the total number of games the champion was played. Then, each pick's respective win rate was added and divided by 5 to obtain the mean. 
 - `mean_team_wr` : Using our cleaned dataframe, we obtained a wr for each team by calculating the number of winning games a team has, divided by the total number of games the team played. 
 
-Our final dataframe head is as follows: 
+Our head of our final dataframe is as follows: 
 
 |   year | gameid    | league   | teamname            | side   | ban1    | ban2     | ban3     | ban4       | ban5    | pick1   | pick2   | pick3      | pick4   | pick5      |   num_counters_picked |   num_counters_banned |   PGA |   higher_PGA |   mean_champ_wr |   mean_team_wr |   result |
 |-------:|:----------|:---------|:--------------------|:-------|:--------|:---------|:---------|:-----------|:--------|:--------|:--------|:-----------|:--------|:-----------|----------------------:|----------------------:|------:|-------------:|----------------:|---------------:|---------:|
@@ -79,24 +79,31 @@ Our final dataframe head is as follows:
 |   2017 | 1507-1544 | LPL      | Invictus Gaming     | Blue   | Jayce   | Elise    | Malzahar | Kha'Zix    | Lee Sin | Singed  | Rengar  | LeBlanc    | Varus   | Tahm Kench |                     0 |                     1 |     1 |            0 |        0.49238  |       0.523126 |        1 |
 
 ## Univariate Analysis 
-For our univariate analysis, lets look at the distribution of PGA across all games. Note that 0 means a team did not counter ban nor counter pick, whereas 10 meant they counter picked every single champ. There are no values of PGA over 8, because there is randomness to when picking and banning. The process usually goes as follows :  
+For our univariate analysis, lets look at the distribution of PGA across all games. Note that 0 means a team did not counter ban nor counter pick, whereas 10 meant they counter picked every single champ. 
 
-- insert univariate 
+<iframe
+  src="C:\LOL-Analysis-\assets\uni.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
-- Both teams ban 5 champions each. 
-- Blue team will pick 1 champion
-- Red team will pick 2 champions 
-- Blue team will pick 2 champions
-- Red team will pick 2 champions
-- Blue team will pick 2 champion
-- Red team will pick 1 champion
+There are no values of PGA over 8, because there is randomness to when picking and banning. The process usually goes as follows :  
 
-Note that it is done in this sense so that 
-- each team has equal likelihood of picking a counter, there isnt a "blue team picks all" and then red team can counter every champion.  As a result, it is very unlikely to have a PGA of 10, as it would insinuate a team choosing to play against their counter, which is not strategic. 
+- Both teams ban 5 champions each
+
+- **Blue** team will pick 1 champion
+- **Red** team will pick 2 champions 
+- **Blue** team will pick 2 champions
+- **Red** team will pick 2 champions
+- **Blue** team will pick 2 champion
+- **Red** team will pick 1 champion
+
+This process ensures each team has equal likelihood of picking a counter; there isnt a "blue team picks all" and then the red team can counter every champion.  As a result, it is very unlikely to have a PGA of 10, as it would insinuate a team choosing to play against their counter, which is not strategic. 
 
 - insert second univariate 
 
-Note that there are more teams with PGA. Meaning, most teams either counter picked the enemy or banned one of their counters. \nThis leads us to believe that players are considering the affect of counter matchups
+It seems that that there are more teams with PGA of at least 1, than none at all. Meaning, most teams either counter picked the enemy or banned one of their counters. This leads us to believe that players are considering the affect of counter matchups
 
 
 ## Multivariate Analysis 
