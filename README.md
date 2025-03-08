@@ -20,9 +20,10 @@ In addition to selecting a role and a repective champion, each player can also b
 The 'Rift', aka the map a match is played on, is parallel, with three lanes and a mass jungle. The red team plays from the top, and aims to destroy the enemys nexus on the bottom, and vise versa. Typically in the league community, most players prefer to be on the blue side, as playing upwards is easier than playing downward. However, these sides are assignmed at random and there is no in game advantage for either.
 
 ## Introduction of dataset 
-Our dataset comes from Oracle’s Elixir, encompassing approximately thousands of professional-level esports matches from top-tier leagues such as the LCS, LEC, LCK, and LPL. For our analysis, we chose to only use 2017, 2019, 2020, 2021, 2022, 2024, and 2025, as the data from other years only had 3 bans, and we would like to analyze across all 5. There are 86899 rows in our dataset. 
-
-- year
+Our dataset comes from Oracle’s Elixir, encompassing approximately thousands of professional-level esports matches from top-tier leagues such as the LCS, LEC, LCK, and LPL. For our analysis, we chose to only use 2017, 2019, 2020, 2021, 2022, 2024, and 2025, as the data from other years only had 3 bans, and we would like to analyze across all 5.
+- **Number of Rows:** 86899
+- **Key Columns:**
+- 'year'
 - gameid
 - league
 - teamname
