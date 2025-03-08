@@ -82,12 +82,8 @@ Our head of our final dataframe is as follows:
 For our univariate analysis, lets look at the distribution of PGA across all games. Note that 0 means a team did not counter ban nor counter pick, whereas 10 meant they counter picked every single champ. 
 
 
-<iframe
-  src="assets\uni.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+<iframe src="assets/uni.html" width="800" height="600" frameborder="0"></iframe>
+
 
 
 There are no values of PGA over 8, because there is randomness to when picking and banning. The process usually goes as follows :  
