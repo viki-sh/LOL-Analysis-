@@ -102,12 +102,6 @@ There are no values of PGA over 8, because there is randomness to when picking a
 
 This process ensures each team has equal likelihood of picking a counter; there isnt a "blue team picks all" and then the red team can counter every champion.  As a result, it is very unlikely to have a PGA of 10, as it would insinuate a team choosing to play against their counter, which is not strategic. 
 
-<iframe
-  src="C:\LOL-Analysis-\uni2.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
 
 
 It seems that that there are more teams with PGA of at least 1, than none at all. Meaning, most teams either counter picked the enemy or banned one of their counters. This leads us to believe that players are considering the affect of counter matchups
@@ -116,21 +110,10 @@ It seems that that there are more teams with PGA of at least 1, than none at all
 ## Multivariate Analysis 
 Lets now see the affect on wins. 
 
-<iframe
-  src="C:\LOL-Analysis-\bi.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
+
 
 It looks like a teams PGA doesnt necessarily mean its more likely to win. However, note that this only shows wins and losses of pga, not necessarily if a higher pga meant winning against their opponent. Lets see that here :
 
-<iframe
-  src="C:\LOL-Analysis-\bi2.html"
-  width="800"
-  height="600"
-  frameborder="0"
-></iframe>
 
 This visualization shows a 50/50 split. So, it looks like having a higher PGA doesnt significantly affect your ability to beat your opponent.
 
