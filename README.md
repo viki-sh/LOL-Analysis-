@@ -83,7 +83,7 @@ For our univariate analysis, lets look at the distribution of PGA across all gam
 
 
 <iframe
-  src="C:\LOL-Analysis-\uni.html"
+  src="uni.html"
   width="800"
   height="600"
   frameborder="0"
@@ -116,10 +116,21 @@ It seems that that there are more teams with PGA of at least 1, than none at all
 ## Multivariate Analysis 
 Lets now see the affect on wins. 
 
-
+<iframe
+  src="bi.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 It looks like a teams PGA doesnt necessarily mean its more likely to win. However, note that this only shows wins and losses of pga, not necessarily if a higher pga meant winning against their opponent. Lets see that here :
 
+<iframe
+  src="bi2.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
 
 This visualization shows a 50/50 split. So, it looks like having a higher PGA doesnt significantly affect your ability to beat your opponent.
 
