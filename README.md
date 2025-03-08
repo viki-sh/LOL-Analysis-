@@ -82,7 +82,7 @@ Our head of our final dataframe is as follows:
 For our univariate analysis, lets look at the distribution of PGA across all games. Note that 0 means a team did not counter ban nor counter pick, whereas 10 meant they counter picked every single champ. 
 
 <iframe
-  src="C:\LOL-Analysis-\assets\uni.html"
+  src="assets\uni.html"
   width="800"
   height="600"
   frameborder="0"
