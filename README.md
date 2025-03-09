@@ -318,3 +318,26 @@ Below is the observed distribution of `teamname` when `league` is missing and no
 The p-value is less than the 0.5 significance level, and so we reject the null hypothesis. Thus, we can conclude that the missingness of `teamname` also depends on the `league`.
 
 # Hypothesis Testing
+
+We aim to determine whether teams with a higher Pre-Game Advantage (PGA) have a significantly greater win rate than teams with lower PGA. This test allows us to assess whether pre-game factors, including champion picks and bans, impact a team’s likelihood of winning.
+
+**Null Hypothesis (H₀):**
+The win rate of teams with a higher PGA is equal to 50%, meaning that PGA has no effect on winning. That is, having a higher PGA does not provide a statistical advantage in determining the outcome of the game.
+
+**Alternative Hypothesis (H₁):**
+Teams with a higher PGA win significantly more than 50% of the time, indicating that pre-game decisions (picks and bans) contribute to winning.
+
+**Test Statistic** : # games won by team with higher PGA / total number of games
+
+**Significance Level**: We set α = 0.05 (5%), meaning we will reject the null hypothesis if the probability of obtaining the observed win rate (or more extreme results) under the null is less than 5%.
+
+Here is a histogram containing the distribution of our test statistics under the null hypothesis:
+
+<iframe
+  src="hyp.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+Based on the hypothesis test performed, with a p-value of 0.0219, we reject the null hypothesis, as it is less than our significance level of 0.05
