@@ -141,3 +141,5 @@ To further explore the impact of pre-game factors on match outcomes, we calculat
 |---------:|-------------:|----------------------:|----------------------:|----------------:|---------------:|---------:|---------:|
 |        0 |     0.49519  |              0.673699 |              0.643978 |        0.499192 |       0.471924 | 0.469407 | 0.530593 |
 |        1 |     0.504811 |              0.675843 |              0.667331 |        0.500674 |       0.527778 | 0.530596 | 0.469404 |
+
+While these aggregates support the idea that pre-game choices play a role in match outcomes, the differences are subtle. This suggests that while drafting strategy matters, in-game execution and adaptability likely have a greater influence on winning.
