@@ -341,3 +341,36 @@ Here is a histogram containing the distribution of our test statistics under the
 ></iframe>
 
 Based on the hypothesis test performed, with a p-value of 0.0219, we reject the null hypothesis, as it is less than our significance level of 0.05
+
+# Framing a Prediction Problem 
+Originally, we had hoped to be able to predict the outcome of a game using pre-game factors. However, as shown in our previous visualizations, aggregations, and hypothesis testing, winning games only have a very small contribution from pre game factors. Thus, when we tried classification on our features, `num_counters`, `num_counters_banned`, `side`, `PGA`, `higher_PGA`, `mean_wr`, `team_wr`, the maximum testing accuracy on logistic regression, random forest classification, decision tree, and gxboost was 60%. 
+
+Thus, we had to reframe our prediction problem! Lets analyze the pregame AND early game, up to the ten minute mark. 
+
+We added the following columns to our data set. 
+
+`goldat10` : The respective teams gold at 10 minutes
+`xpat10`: The respective teams experience at 10 minutes
+`csat10` : The respective teams 'creep score' - Number of minions killed at 10 minutes 
+`opp_goldat10`: The opponents teams gold at 10 minutes
+`opp_xpat10`: The opponents teams experience at 10 minutes	
+`opp_csat10`: The opponents teams 'creep score' - Number of minions killed at 10 minutes 	
+`golddiffat10`: The respectives team's gold, subtracted by its opponent's gold
+`xpdiffat10`: The respectives team's player experience, subtracted by its opponent's gold
+`csdiffat10`: The respectives team's creep score, subtracted by its opponent's gold
+`killsat10`: The respective teams kills at 10 minutes
+`assistsat10`: The respective teams kill assists at 10 minutes
+`deathsat10`: The respective teams deaths at 10 minutes
+`opp_killsat10` : The opponents teams kills at 10 minutes
+`opp_assistsat10` : The opponents teams assists at 10 minutes
+`opp_deathsat10`: The opponents teams deaths at 10 minutes
+
+The head of our dataframe is as follows: 
+
+|   year | gameid               | league   | teamname             | side   | ban1    | ban2    | ban3    | ban4   | ban5       | pick1     | pick2   | pick3      | pick4   | pick5   |   result |   goldat10 |   xpat10 |   csat10 |   opp_goldat10 |   opp_xpat10 |   opp_csat10 |   golddiffat10 |   xpdiffat10 |   csdiffat10 |   killsat10 |   assistsat10 |   deathsat10 |   opp_killsat10 |   opp_assistsat10 |   opp_deathsat10 |
+|-------:|:---------------------|:---------|:---------------------|:-------|:--------|:--------|:--------|:-------|:-----------|:----------|:--------|:-----------|:--------|:--------|---------:|-----------:|---------:|---------:|---------------:|-------------:|-------------:|---------------:|-------------:|-------------:|------------:|--------------:|-------------:|----------------:|------------------:|-----------------:|
+|   2017 | ESPORTSTMNT01/110140 | CISC     | Elements Pro Gaming  | Blue   | Lee Sin | Jayce   | Graves  | Jhin   | Ashe       | Fiora     | Rengar  | Cassiopeia | Varus   | Thresh  |        1 |       3450 |     4657 |       71 |           3128 |         4490 |           82 |            322 |          167 |          -11 |           0 |             2 |            0 |               0 |                 0 |                1 |
+|   2017 | ESPORTSTMNT01/110140 | CISC     | CrowCrowd            | Red    | LeBlanc | Corki   | Kha'Zix | Sion   | nan        | Shen      | Rek'Sai | Ryze       | Sivir   | Lulu    |        0 |       3128 |     4490 |       82 |           3450 |         4657 |           71 |           -322 |         -167 |           11 |           0 |             0 |            1 |               0 |                 2 |                0 |
+|   2017 | ESPORTSTMNT01/110148 | CISC     | CrowCrowd            | Blue   | Ryze    | LeBlanc | Rengar  | Zyra   | Cassiopeia | Gangplank | Kha'Zix | Corki      | Ashe    | Braum   |        0 |       3738 |     4767 |       91 |           2809 |         4257 |           63 |            929 |          510 |           28 |           0 |             0 |            0 |               0 |                 0 |                0 |
+|   2017 | ESPORTSTMNT01/110148 | CISC     | Elements Pro Gaming  | Red    | Lee Sin | Jayce   | Graves  | Fiora  | Camille    | Shen      | Nidalee | Orianna    | Varus   | Thresh  |        1 |       2809 |     4257 |       63 |           3738 |         4767 |           91 |           -929 |         -510 |          -28 |           0 |             0 |            0 |               0 |                 0 |                0 |
+|   2017 | ESPORTSTMNT01/130223 | CISC     | Team Just Challenger | Blue   | Fiora   | Rengar  | Zyra    | Yorick | Poppy      | Shen      | Ivern   | Ziggs      | Jhin    | Karma   |        0 |       2834 |     3887 |       62 |           3140 |         4839 |           77 |           -306 |         -952 |          -15 |           0 |             2 |            0 |               0 |                 1 |                0 |
