@@ -143,3 +143,176 @@ To further explore the impact of pre-game factors on match outcomes, we calculat
 |        1 |     0.504811 |              0.675843 |              0.667331 |        0.500674 |       0.527778 | 0.530596 | 0.469404 |
 
 While these aggregates support the idea that pre-game choices play a role in match outcomes, the differences are subtle. This suggests that while drafting strategy matters, in-game execution and adaptability likely have a greater influence on winning.
+
+## Assessment of Missingness
+### NMAR Analysis 
+Upon examining our dataset, we identified missing values in the following columns:
+`teamname`, `ban1`, `ban2`, `ban3`, `ban4`, `ban5`
+
+The columns `ban1` through `ban5` contain missing values because players have the option to skip banning champions in a League of Legends game. Our preliminary analysis suggests that the missingness in these columns does not correlate with other observed variables, leading us to believe that the missing data is due to in-game choices rather than external factors, and as a result is Not Missing At Random (NMAR)
+
+### Missingness Dpendency 
+In this part, we are going to test if the missingness of `teamname` column depends on two other columns; `year` and `league`. The significance level for both permutation tests is 0.5, and the test statistic is Total Variance Distance (TVD).
+
+
+First, we perform a permutation test on `teamname` and `year`
+
+**Null Hypothesis**: Distribution of `teamname` when `year` is missing is the same as the distribution of `teamname` when `year` is not missing.
+
+**Alternative Hypothesis**:  Distribution of `teamname` when `year` is missing not the same as the distribution of `teamname` when `year` is not missing.
+
+Below is the observed distribution of `teamname` when `year` is missing and not missing.
+
+|   year |   team_name_missing = False |   team_name_missing = True |
+|-------:|----------------------------:|---------------------------:|
+|   2017 |                  0.0924056  |                   0        |
+|   2018 |                  0.00296622 |                   0        |
+|   2019 |                  0.134793   |                   0        |
+|   2020 |                  0.160153   |                   0        |
+|   2021 |                  0.197978   |                   0.681818 |
+|   2022 |                  0.215255   |                   0.318182 |
+|   2023 |                  0.00613622 |                   0        |
+|   2024 |                  0.157504   |                   0        |
+|   2025 |                  0.0328095  |                   0        |
+
+<iframe
+  src="mm1-year.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p-value is less than the 0.5 significance level, and so we reject the null hypothesis. Thus, we can conclude that the missingness of `teamname` depends on the `year`.
+
+
+
+Next, lets perform a permutation test on `teamname` and `league`
+
+**Null Hypothesis**: Distribution of `teamname` when `league` is missing is the same as the distribution of `teamname` when `league` is not missing.
+
+**Alternative Hypothesis**:  Distribution of `teamname` when `league` is missing not the same as the distribution of `teamname` when `league` is not missing.
+
+Below is the observed distribution of `teamname` when `league` is missing and not missing.
+
+| league          |   team_name_missing = False |   team_name_missing = True |
+|:----------------|----------------------------:|---------------------------:|
+| AC              |                 0.000656643 |                   0        |
+| AL              |                 0.00400779  |                   0        |
+| AOL             |                 0.000634001 |                   0        |
+| ASCI            |                 0.001268    |                   0        |
+| BIG             |                 0.00600036  |                   0        |
+| BL              |                 0.0033285   |                   0        |
+| BM              |                 0.0039625   |                   0        |
+| BRCC            |                 0.00595508  |                   0        |
+| CBLOL           |                 0.0214654   |                   0        |
+| CBLOLA          |                 0.0122272   |                   0        |
+| CDF             |                 0.00246807  |                   0        |
+| CISC            |                 0.000588715 |                   0        |
+| CK              |                 0.0151707   |                   0        |
+| CLS             |                 0.00312472  |                   0        |
+| CT              |                 0.00267186  |                   0        |
+| CU              |                 0.00355493  |                   0        |
+| DCup            |                 0.00609093  |                   0        |
+| DDH             |                 0.0119781   |                   0        |
+| DL              |                 0.00310207  |                   0        |
+| EBL             |                 0.0124762   |                   0        |
+| EBLPA           |                 0.000656643 |                   0        |
+| EGL             |                 0.00151707  |                   0        |
+| EL              |                 0.00226429  |                   0        |
+| EM              |                 0.00697401  |                   0        |
+| EPL             |                 0.0026945   |                   0        |
+| ESLOL           |                 0.00896658  |                   0        |
+| EU CS           |                 0.00219636  |                   0        |
+| EU LCS          |                 0.00638529  |                   0        |
+| EUM             |                 0.0135178   |                   0        |
+| EWC             |                 0.000271715 |                   0        |
+| GL              |                 0.00323793  |                   0        |
+| GLL             |                 0.0153066   |                   0        |
+| GLLPA           |                 0.00144914  |                   0        |
+| GPL             |                 0.00113214  |                   0        |
+| GSG             |                 0.000815144 |                   0        |
+| HC              |                 0.00898922  |                   0        |
+| HLL             |                 0.00122272  |                   0        |
+| HM              |                 0.01268     |                   0        |
+| HS              |                 0.001268    |                   0        |
+| HW              |                 0.00303415  |                   0        |
+| IC              |                 0.00224164  |                   0        |
+| IEM             |                 0.000588715 |                   0        |
+| KeSPA           |                 0.00346436  |                   0        |
+| LAS             |                 0.0132687   |                   0        |
+| LCK             |                 0.0505615   |                   0        |
+| LCKC            |                 0.020922    |                   0        |
+| LCL             |                 0.00946472  |                   0        |
+| LCO             |                 0.00892129  |                   0        |
+| LCP             |                 0.00133593  |                   0        |
+| LCS             |                 0.0228693   |                   0        |
+| LCSA            |                 0.0232316   |                   0        |
+| LDL             |                 0.0830767   |                   0        |
+| LEC             |                 0.0233674   |                   0        |
+| LFL             |                 0.0184766   |                   0        |
+| LFL2            |                 0.00869486  |                   0        |
+| LGL             |                 0.000113214 |                   0        |
+| LHE             |                 0.0155557   |                   0        |
+| LIT             |                 0.00305679  |                   0        |
+| LJL             |                 0.0185672   |                   0        |
+| LJLA            |                 0.00135857  |                   0        |
+| LLA             |                 0.0159179   |                   0        |
+| LLN             |                 0.00430215  |                   0        |
+| LMF             |                 0.0167104   |                   0        |
+| LMS             |                 0.00978172  |                   0        |
+| LPL             |                 0.0715288   |                   0        |
+| LPLOL           |                 0.0159632   |                   0        |
+| LRN             |                 0.00163029  |                   0        |
+| LRS             |                 0.00165293  |                   0        |
+| LSPL            |                 0.0113667   |                   0        |
+| LTA             |                 0.000249072 |                   0        |
+| LTA N           |                 0.000430215 |                   0        |
+| LTA S           |                 0.000452858 |                   0        |
+| LVP SL          |                 0.0132687   |                   0        |
+| MSC             |                 0.000362286 |                   0        |
+| MSI             |                 0.00620415  |                   0        |
+| NA CS           |                 0.00201522  |                   0        |
+| NA LCS          |                 0.00889865  |                   0        |
+| NACL            |                 0.00830994  |                   0        |
+| NASG            |                 0.00194729  |                   0        |
+| NERD            |                 0.000815144 |                   0        |
+| NEST            |                 0.000498143 |                   0        |
+| NEXO            |                 0.0107554   |                   0        |
+| NLC             |                 0.0181822   |                   0        |
+| NLC Aurora Open |                 0.00362286  |                   0        |
+| OCS             |                 0.0036455   |                   0        |
+| OPL             |                 0.0110271   |                   0        |
+| OTBLX           |                 0.00656643  |                   0        |
+| PCS             |                 0.0192464   |                   0        |
+| PGC             |                 0.00978172  |                   0        |
+| PGN             |                 0.011095    |                   0        |
+| PRM             |                 0.0181936   |                   0.681818 |
+| PRMP            |                 0.00426818  |                   0.318182 |
+| RCL             |                 0.00905715  |                   0        |
+| RL              |                 0.00124536  |                   0        |
+| ROL             |                 0.000543429 |                   0        |
+| Riot            |                 0.000317    |                   0        |
+| SL (LATAM)      |                 0.00321529  |                   0        |
+| SLO             |                 0.00724572  |                   0        |
+| TAL             |                 0.0135857   |                   0        |
+| TCL             |                 0.0230731   |                   0        |
+| TPL             |                 0.00156236  |                   0        |
+| TSC             |                 0.00178879  |                   0        |
+| UGP             |                 0.0020605   |                   0        |
+| UKLC            |                 0.00710986  |                   0        |
+| UL              |                 0.0158727   |                   0        |
+| UPL             |                 0.0176841   |                   0        |
+| USP             |                 0.00122272  |                   0        |
+| VCS             |                 0.0255185   |                   0        |
+| VL              |                 0.00317     |                   0        |
+| WLDs            |                 0.0125894   |                   0        |
+
+
+<iframe
+  src="mm1-league.html"
+  width="800"
+  height="600"
+  frameborder="0"
+></iframe>
+
+The p-value is less than the 0.5 significance level, and so we reject the null hypothesis. Thus, we can conclude that the missingness of `teamname` depends on the `league`.
