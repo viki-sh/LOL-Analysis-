@@ -144,14 +144,14 @@ To further explore the impact of pre-game factors on match outcomes, we calculat
 
 While these aggregates support the idea that pre-game choices play a role in match outcomes, the differences are subtle. This suggests that while drafting strategy matters, in-game execution and adaptability likely have a greater influence on winning.
 
-## Assessment of Missingness
-### NMAR Analysis 
+# Assessment of Missingness
+## NMAR Analysis 
 Upon examining our dataset, we identified missing values in the following columns:
 `teamname`, `ban1`, `ban2`, `ban3`, `ban4`, `ban5`
 
 The columns `ban1` through `ban5` contain missing values because players have the option to skip banning champions in a League of Legends game. Our preliminary analysis suggests that the missingness in these columns does not correlate with other observed variables, leading us to believe that the missing data is due to in-game choices rather than external factors, and as a result is Not Missing At Random (NMAR)
 
-### Missingness Dpendency 
+## Missingness Dpendency 
 In this part, we are going to test if the missingness of `teamname` column depends on two other columns; `year` and `league`. The significance level for both permutation tests is 0.5, and the test statistic is Total Variance Distance (TVD).
 
 
@@ -315,4 +315,6 @@ Below is the observed distribution of `teamname` when `league` is missing and no
   frameborder="0"
 ></iframe>
 
-The p-value is less than the 0.5 significance level, and so we reject the null hypothesis. Thus, we can conclude that the missingness of `teamname` depends on the `league`.
+The p-value is less than the 0.5 significance level, and so we reject the null hypothesis. Thus, we can conclude that the missingness of `teamname` also depends on the `league`.
+
+# Hypothesis Testing
