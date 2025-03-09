@@ -135,7 +135,7 @@ It looks like a teams PGA doesnt necessarily mean its more likely to win. Howeve
 This visualization shows a 50/50 split. So, it looks like having a higher PGA doesnt significantly affect your ability to beat your opponent.
 
 ## Interesting Aggregates
-Below, we've taken some mean aggregate values of our columns to see its relation to win rate. It appears theres a stronger PGA for wins, and more wins on the blue side. 
+To further explore the impact of pre-game factors on match outcomes, we calculated the mean aggregate values of key variables for both winning and losing teams. The results suggest that pre-game factors influence match outcomes.
 
 |   result |   higher_PGA |   num_counters_picked |   num_counters_banned |   mean_champ_wr |   mean_team_wr |     blue |      red |
 |---------:|-------------:|----------------------:|----------------------:|----------------:|---------------:|---------:|---------:|
