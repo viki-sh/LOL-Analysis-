@@ -1,7 +1,7 @@
 # Was it Over Before it Started?
 
 # General Introduction 
-Welcome to League of Legends! A video game published and developed by Riot Games, widely considered one of the greatest video games ever made. Furthermore, it is the worlds largest esports, with events consisting of hundreds of millions viewers. This analysis aims to analyze eight years of professional league matches, and answer the question, "Do pre-game choices have an affect on the whether a team wins or not"
+Welcome to League of Legends! A video game published and developed by Riot Games, widely considered one of the greatest video games ever made. Furthermore, it is the world’s largest esport, with events drawing hundreds of millions of viewers. This analysis aims to analyze eight years of professional league matches, and answer the question, "Do pre-game choices have an affect on the whether a team wins or not"
 
 In a league of legends game, two teams, consisting of 5 players each compete to destroy the enemys "nexus", a home base. The game is extremely complex, and there are many factors in a game including over 150 possible champions, a "store" to buy items to benefit a players performance, gold, jungle monsters, roles, to state a few. 
 
@@ -135,3 +135,12 @@ It looks like a teams PGA doesnt necessarily mean its more likely to win. Howeve
 This visualization shows a 50/50 split. So, it looks like having a higher PGA doesnt significantly affect your ability to beat your opponent.
 
 ## Interesting Aggregates
+Below, we've taken some mean aggregate values of our columns to see its relation to win rate. It appears theres a stronger PGA for wins, and more wins on the blue side. 
+
+|   Unnamed: 0 |   year | gameid    | league   | teamname            | ban1    | ban2     | ban3     | ban4       | ban5    | pick1   | pick2   | pick3      | pick4   | pick5      |   num_counters_picked |   num_counters_banned |   PGA |   higher_PGA |   mean_champ_wr |   mean_team_wr |   result | blue   | red   |
+|-------------:|-------:|:----------|:---------|:--------------------|:--------|:---------|:---------|:-----------|:--------|:--------|:--------|:-----------|:--------|:-----------|----------------------:|----------------------:|------:|-------------:|----------------:|---------------:|---------:|:-------|:------|
+|            0 |   2017 | 1506-1540 | LPL      | I May               | Syndra  | Malzahar | Ashe     | Karma      | Poppy   | Maokai  | Kha'Zix | Cassiopeia | Varus   | Tahm Kench |                     0 |                     2 |     2 |            1 |        0.508666 |       0.438776 |        1 | True   | False |
+|            1 |   2017 | 1506-1540 | LPL      | Royal Never Give Up | Camille | Rengar   | Zyra     | Elise      | Rek'Sai | Kled    | Lee Sin | Ryze       | Caitlyn | Nautilus   |                     0 |                     0 |     0 |            0 |        0.493086 |       0.598582 |        0 | False  | True  |
+|            2 |   2017 | 1506-1541 | LPL      | I May               | Syndra  | Malzahar | Ashe     | Rek'Sai    | Kha'Zix | Maokai  | Lee Sin | Corki      | Caitlyn | Thresh     |                     0 |                     0 |     0 |            0 |        0.510833 |       0.438776 |        1 | True   | False |
+|            3 |   2017 | 1506-1541 | LPL      | Royal Never Give Up | Rengar  | Camille  | Varus    | Cassiopeia | Orianna | Trundle | Rumble  | Ryze       | Jhin    | Zyra       |                     1 |                     0 |     1 |            1 |        0.492558 |       0.598582 |        0 | False  | True  |
+|            4 |   2017 | 1507-1544 | LPL      | Invictus Gaming     | Jayce   | Elise    | Malzahar | Kha'Zix    | Lee Sin | Singed  | Rengar  | LeBlanc    | Varus   | Tahm Kench |                     0 |                     1 |     1 |            0 |        0.49238  |       0.523126 |        1 | True   | False |
